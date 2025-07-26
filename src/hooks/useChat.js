@@ -273,7 +273,7 @@ async function getWolfieResponse(userInput, conversationHistory) {
 function getStaticResponse(userInput) {
   const input = userInput.toLowerCase().trim()
 
-  if (input === "hii") {
+  if (input === "hii" || "hiii" || "hiiii" || "hiiiii" || "hello" || "heyy" || "hey" ) {
     return "woof woof! 🐺"
   }
 
