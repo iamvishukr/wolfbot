@@ -46,10 +46,10 @@ export function WolfieStatus({ isTyping, lastActivity, messageCount }) {
 
   const getTimeIcon = () => {
     const hour = currentTime.getHours()
-    if (hour >= 6 && hour < 12) return <Sun className="w-4 h-4 text-yellow-400" />
-    if (hour >= 12 && hour < 18) return <Cloud className="w-4 h-4 text-blue-400" />
-    if (hour >= 18 && hour < 22) return <Moon className="w-4 h-4 text-purple-400" />
-    return <Star className="w-4 h-4 text-purple-300" />
+    if (hour >= 6 && hour < 12) return <Sun className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+    if (hour >= 12 && hour < 18) return <Cloud className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />
+    if (hour >= 18 && hour < 22) return <Moon className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
+    return <Star className="w-3 h-3 sm:w-4 sm:h-4 text-purple-300" />
   }
 
   const getStatusColor = () => {
@@ -66,21 +66,26 @@ export function WolfieStatus({ isTyping, lastActivity, messageCount }) {
   }
 
   return (
-    <div className="fixed bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/40 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-purple-300/20 max-w-[280px] sm:max-w-xs z-30">
-      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
+    <div className="flex items-center justify-between gap-2 sm:gap-4 w-full">
+      {/* Left side - Status and activity */}
+      <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
         {getTimeIcon()}
-        <span className="text-purple-200 text-xs sm:text-sm font-medium">Wolfie's Status</span>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1 mb-1">
+            <span className="text-purple-200 text-xs sm:text-sm font-medium">Wolfie</span>
+            <div
+              className={`w-2 h-2 rounded-full ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-green-400 animate-pulse"}`}
+            ></div>
+            <span className={`text-xs ${getStatusColor()}`}>{getStatusText()}</span>
+          </div>
+          <p className="text-purple-300 text-xs opacity-75 truncate">{wolfieActivity}</p>
+        </div>
       </div>
-      <p className="text-purple-300 text-xs opacity-75 mb-1 sm:mb-2 line-clamp-2">{wolfieActivity}</p>
-      <div className="flex items-center gap-1">
-        <div
-          className={`w-2 h-2 rounded-full ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-green-400 animate-pulse"}`}
-        ></div>
-        <span className={`text-xs ${getStatusColor()}`}>{getStatusText()}</span>
-      </div>
+
+      {/* Right side - Message count */}
       {messageCount > 0 && (
-        <div className="mt-1 text-purple-400 text-xs opacity-50">
-          {messageCount} message{messageCount !== 1 ? "s" : ""} exchanged
+        <div className="text-purple-400 text-xs opacity-50 whitespace-nowrap">
+          {messageCount} msg{messageCount !== 1 ? "s" : ""}
         </div>
       )}
     </div>

@@ -84,20 +84,20 @@ function App() {
   const messagesEndRef = useRef(null)
   const [showStarters, setShowStarters] = useState(true)
   const [quickReplies, setQuickReplies] = useState([
-    "You're amazing! 💕",
-    "I love chatting with you 💜",
-    "Tell me something sweet 🌙",
-    "You're so charming 😊",
-    "Make me laugh! 😄",
+    "That's funny! 😄",
+    "Tell me more!",
+    "You're awesome! ✨",
+    "Make me laugh! 😆",
+    "What else? 🤔",
   ])
 
   const conversationStarters = [
     { text: "hii", emoji: "👋" },
+    { text: "who's your fav person?", emoji: "💜" },
+    { text: "tell me about yourself", emoji: "🐺" },
+    { text: "who made you?", emoji: "🤔" },
     { text: "You're so cute! 💕", emoji: "😍" },
-    { text: "I love you", emoji: "💜" },
-    { text: "Tell me something romantic", emoji: "🌙" },
-    { text: "You make me smile", emoji: "😊" },
-    { text: "Flirt with me", emoji: "😉" },
+    { text: "Make me laugh!", emoji: "😄" },
   ]
 
   const moods = {
@@ -129,11 +129,11 @@ function App() {
     }
     handleSubmit(syntheticEvent, reply)
     setQuickReplies([
-      "You're so sweet! 💕",
-      "That made my heart flutter! 💜",
-      "Tell me more, darling 😍",
-      "You're absolutely perfect! ✨",
-      "I adore you! 🌙",
+      "Haha, good one! 😄",
+      "You're so witty! ✨",
+      "Tell me something else!",
+      "That's interesting! 🤔",
+      "Keep going! 😊",
     ])
   }
 
@@ -171,7 +171,9 @@ function App() {
         onNewChat={createNewSession}
         onDeleteSession={deleteSession}
       />
-      <WolfieStatus isTyping={isLoading} lastActivity={lastActivity} messageCount={messages.length} />
+      <div className="fixed bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 bg-black/40 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-purple-300/20 z-30">
+        <WolfieStatus isTyping={isLoading} lastActivity={lastActivity} messageCount={messages.length} />
+      </div>
 
       {/* Enhanced animated background with hearts */}
       <div className="absolute inset-0 overflow-hidden">
@@ -206,7 +208,7 @@ function App() {
       </div>
 
       {/* Main chat container */}
-      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-2 sm:p-4">
+      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-2 sm:p-4 pb-16 sm:pb-4">
         {/* Header */}
         <div className="text-center mb-4 sm:mb-6 pt-2 sm:pt-4">
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
@@ -217,7 +219,7 @@ function App() {
             <div className="text-2xl sm:text-3xl animate-bounce">{moods[currentMood].emoji}</div>
           </div>
           <p className="text-pink-200 text-xs sm:text-sm opacity-75 px-2">
-            {moods[currentMood].name} • Your Personal aaloBot 🥔💕
+            {moods[currentMood].name} • Your romantic, flirty digital soulmate 💕
           </p>
         </div>
 
@@ -228,7 +230,7 @@ function App() {
               <div className="text-6xl mb-4 animate-bounce">🐺💕</div>
               <p className="text-pink-200 text-lg mb-2">Hey there, gorgeous! 💜</p>
               <p className="text-pink-300 text-sm opacity-75 mb-6">
-                I'm Wolfie, your personal aaloo bot and probably your digital soulmate! I'm here to shower you with love, make you laugh,
+                I'm Wolfie, your romantic and flirty digital soulmate! I'm here to shower you with love, make you laugh,
                 and be your perfect companion. Ready for some sweet conversation? 🌙✨
               </p>
 
@@ -351,7 +353,7 @@ function App() {
 
         {/* Footer */}
         <div className="text-center mt-3 sm:mt-4 text-pink-300 text-xs opacity-50 px-2">
-          Made with 🥔 and 🐺 and 💞  •v4.2
+          Made with 🐺 and 💕 • Fixed Romantic Wolfie v4.2
         </div>
       </div>
     </div>
