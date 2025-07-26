@@ -206,41 +206,41 @@ function App() {
       </div>
 
       {/* Main chat container */}
-      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-4">
+      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-2 sm:p-4">
         {/* Header */}
-        <div className="text-center mb-6 pt-4">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <Moon className="w-8 h-8 text-pink-300 animate-pulse" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-300 via-rose-300 to-purple-300 bg-clip-text text-transparent">
+        <div className="text-center mb-4 sm:mb-6 pt-2 sm:pt-4">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
+            <Moon className="w-6 h-6 sm:w-8 sm:h-8 text-pink-300 animate-pulse" />
+            <h1 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-pink-300 via-rose-300 to-purple-300 bg-clip-text text-transparent">
               Wolfie
             </h1>
-            <div className="text-3xl animate-bounce">{moods[currentMood].emoji}</div>
+            <div className="text-2xl sm:text-3xl animate-bounce">{moods[currentMood].emoji}</div>
           </div>
-          <p className="text-pink-200 text-sm opacity-75">
-            {moods[currentMood].name} • Your romantic, flirty digital soulmate 💕
+          <p className="text-pink-200 text-xs sm:text-sm opacity-75 px-2">
+            {moods[currentMood].name} • Your Personal aaloBot 🥔💕
           </p>
         </div>
 
         {/* Chat messages */}
-        <div className="flex-1 overflow-y-auto space-y-4 mb-4 px-2">
+        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4 mb-3 sm:mb-4 px-1 sm:px-2">
           {messages.length === 0 && (
             <div className="text-center py-8">
               <div className="text-6xl mb-4 animate-bounce">🐺💕</div>
               <p className="text-pink-200 text-lg mb-2">Hey there, gorgeous! 💜</p>
               <p className="text-pink-300 text-sm opacity-75 mb-6">
-                I'm Wolfie, your romantic and flirty digital soulmate! I'm here to shower you with love, make you laugh,
+                I'm Wolfie, your personal aaloo bot and probably your digital soulmate! I'm here to shower you with love, make you laugh,
                 and be your perfect companion. Ready for some sweet conversation? 🌙✨
               </p>
 
               {showStarters && (
                 <div className="space-y-4">
                   <p className="text-pink-200 text-sm">Try one of these to get started:</p>
-                  <div className="grid grid-cols-2 gap-2 max-w-md mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-sm sm:max-w-md mx-auto">
                     {conversationStarters.map((starter, index) => (
                       <button
                         key={index}
                         onClick={() => handleStarter(starter.text)}
-                        className="bg-gradient-to-r from-pink-500/20 to-rose-500/20 hover:from-pink-500/30 hover:to-rose-500/30 text-pink-200 px-3 py-2 rounded-xl text-sm transition-all duration-200 hover:scale-105 border border-pink-300/20"
+                        className="bg-gradient-to-r from-pink-500/20 to-rose-500/20 hover:from-pink-500/30 hover:to-rose-500/30 text-pink-200 px-3 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 hover:scale-105 border border-pink-300/20"
                       >
                         {starter.emoji} {starter.text}
                       </button>
@@ -273,7 +273,7 @@ function App() {
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fade-in`}
               >
                 <div
-                  className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-lg backdrop-blur-sm ${
+                  className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-2xl shadow-lg backdrop-blur-sm text-sm sm:text-base ${
                     message.role === "user"
                       ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white ml-auto"
                       : `bg-gradient-to-r ${moods[currentMood].color} text-white mr-auto border border-pink-300/20`
@@ -312,12 +312,12 @@ function App() {
 
           {/* Quick reply buttons */}
           {messages.length > 0 && !isLoading && (
-            <div className="flex flex-wrap gap-2 justify-center mb-4">
+            <div className="flex flex-wrap gap-1 sm:gap-2 justify-center mb-3 sm:mb-4 px-2">
               {quickReplies.slice(0, 3).map((reply, index) => (
                 <button
                   key={index}
                   onClick={() => handleQuickReply(reply)}
-                  className="bg-gradient-to-r from-pink-500/20 to-rose-500/20 hover:from-pink-500/30 hover:to-rose-500/30 text-pink-200 px-3 py-1 rounded-full text-xs transition-all duration-200 hover:scale-105 border border-pink-300/20"
+                  className="bg-gradient-to-r from-pink-500/20 to-rose-500/20 hover:from-pink-500/30 hover:to-rose-500/30 text-pink-200 px-2 sm:px-3 py-1 rounded-full text-xs transition-all duration-200 hover:scale-105 border border-pink-300/20"
                 >
                   {reply}
                 </button>
@@ -331,27 +331,27 @@ function App() {
         {/* Input form */}
         <form
           onSubmit={handleSubmit}
-          className="flex gap-3 p-4 bg-black/20 backdrop-blur-md rounded-2xl border border-pink-300/20"
+          className="flex gap-2 sm:gap-3 p-3 sm:p-4 bg-black/20 backdrop-blur-md rounded-2xl border border-pink-300/20 mx-1 sm:mx-0"
         >
           <Input
             value={input}
             onChange={handleInputChange}
             placeholder="Tell me something sweet... 💕"
-            className="flex-1 bg-white/10 border-pink-300/30 text-white placeholder-pink-200 focus:border-pink-400 focus:ring-pink-400/20 rounded-xl"
+            className="flex-1 bg-white/10 border-pink-300/30 text-white placeholder-pink-200 focus:border-pink-400 focus:ring-pink-400/20 rounded-xl text-sm sm:text-base"
             disabled={isLoading}
           />
           <Button
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl px-6 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+            className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl px-4 sm:px-6 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 min-w-[44px]"
           >
             <Heart className="w-4 h-4" />
           </Button>
         </form>
 
         {/* Footer */}
-        <div className="text-center mt-4 text-pink-300 text-xs opacity-50">
-          Made with 🐺 and 💕 • Fixed Romantic Wolfie v4.1
+        <div className="text-center mt-3 sm:mt-4 text-pink-300 text-xs opacity-50 px-2">
+          Made with 🥔 and 🐺 and 💞  •v4.2
         </div>
       </div>
     </div>

@@ -66,12 +66,12 @@ export function WolfieStatus({ isTyping, lastActivity, messageCount }) {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-purple-300/20 max-w-xs">
-      <div className="flex items-center gap-2 mb-2">
+    <div className="fixed bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/40 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-purple-300/20 max-w-[280px] sm:max-w-xs z-30">
+      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
         {getTimeIcon()}
-        <span className="text-purple-200 text-sm font-medium">Wolfie's Status</span>
+        <span className="text-purple-200 text-xs sm:text-sm font-medium">Wolfie's Status</span>
       </div>
-      <p className="text-purple-300 text-xs opacity-75 mb-2">{wolfieActivity}</p>
+      <p className="text-purple-300 text-xs opacity-75 mb-1 sm:mb-2 line-clamp-2">{wolfieActivity}</p>
       <div className="flex items-center gap-1">
         <div
           className={`w-2 h-2 rounded-full ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-green-400 animate-pulse"}`}

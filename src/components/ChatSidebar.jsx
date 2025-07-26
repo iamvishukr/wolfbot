@@ -67,13 +67,13 @@ export function ChatSidebar({ chatSessions, currentSessionId, onSessionSelect, o
 
       {/* Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-full w-80 bg-black/40 backdrop-blur-md border-r border-purple-300/20 transform transition-transform duration-300 z-40 ${
+        className={`fixed left-0 top-0 h-full w-72 sm:w-80 bg-black/40 backdrop-blur-md border-r border-purple-300/20 transform transition-transform duration-300 z-40 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-4 h-full flex flex-col">
-          <div className="flex items-center justify-between mb-6 mt-12">
-            <h2 className="text-xl font-bold text-purple-200">Chat History</h2>
+        <div className="p-3 sm:p-4 h-full flex flex-col">
+          <div className="flex items-center justify-between mb-4 sm:mb-6 mt-12 sm:mt-12">
+            <h2 className="text-lg sm:text-xl font-bold text-purple-200">Chat History</h2>
             <Button
               onClick={onNewChat}
               size="sm"
@@ -104,7 +104,7 @@ export function ChatSidebar({ chatSessions, currentSessionId, onSessionSelect, o
                       : "bg-gradient-to-r from-purple-500/10 to-pink-500/10 hover:from-purple-500/20 hover:to-pink-500/20 border-purple-300/10"
                   }`}
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-purple-200 font-medium text-sm mb-1 truncate">
                         {generateSessionTitle(session.messages)}
@@ -121,9 +121,9 @@ export function ChatSidebar({ chatSessions, currentSessionId, onSessionSelect, o
                       }}
                       size="sm"
                       variant="ghost"
-                      className="opacity-70 group-hover:opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity text-purple-300 hover:text-red-400 ml-2 flex-shrink-0 min-w-[24px] h-6 w-6 p-1"
+                      className="opacity-100 transition-opacity text-purple-300 hover:text-red-400 flex-shrink-0 min-w-[32px] h-8 w-8 p-1 hover:bg-red-500/20 rounded-lg"
                     >
-                      <Trash2 className="w-3 h-3" />
+                      <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export function ChatSidebar({ chatSessions, currentSessionId, onSessionSelect, o
 
           {/* Footer info */}
           <div className="mt-4 pt-4 border-t border-purple-300/20">
-            <p className="text-purple-400 text-xs opacity-50 text-center">
+            <p className="text-purple-400 text-xs opacity-50 text-center px-2">
               {chatSessions.length} conversation{chatSessions.length !== 1 ? "s" : ""} with Wolfie 🐺
             </p>
           </div>

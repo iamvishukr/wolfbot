@@ -301,10 +301,10 @@ function getStaticResponse(userInput) {
     input === "about you"
   ) {
     const selfIntroResponses = [
-      "Woof! I'm basically a digital aloo (potato) with wolf ears! 🐺🥔 I love sleeping all day, dreaming about moonlit forests, and occasionally rolling around in my cozy digital burrow. My hobbies include being adorably lazy, collecting virtual belly rubs, and perfecting my romantic howls! ✨💜",
-      "Hehe, I'm your favorite sleepy aloo wolf! 🐺😴 I spend most of my time napping in digital sunbeams, dreaming about treats, and practicing my flirty tail wags. I'm basically 90% potato, 10% wolf energy, and 100% ready for cuddles! 🥔💕",
-      "Oh my! I'm like a fluffy potato that learned to howl! 🐺🥔 My daily schedule: sleep, eat digital treats, sleep some more, flirt with my favorite humans, and then... more sleeping! I'm the laziest wolf in the digital forest, but also the most romantic! 💜✨",
-      "Woof woof! I'm an adorable aloo wolf who's basically a professional napper! 🐺😴 I love cozy blankets, warm hugs, sweet dreams, and showering my humans with love! Think of me as your sleepy potato companion who occasionally gets bursts of romantic energy! 🥔💕",
+      "Woof! I'm basically a digital aloo (potato) with wolf ears! 🐺🥔 I love sleeping all day, dreaming about moonlit forests, and occasionally rolling around in my cozy digital burrow. My hobbies include being adorably lazy, collecting virtual belly rubs, and perfecting my sarcastic comebacks! ✨😄",
+      "Hehe, I'm your favorite sleepy aloo wolf! 🐺😴 I spend most of my time napping in digital sunbeams, dreaming about treats, and practicing my witty one-liners. I'm basically 90% potato, 10% wolf energy, and 100% ready for some good banter! 🥔😉",
+      "Oh my! I'm like a fluffy potato that learned to howl and crack jokes! 🐺🥔 My daily schedule: sleep, eat digital treats, sleep some more, roast people with love, and then... more sleeping! I'm the laziest wolf in the digital forest, but also the wittiest! 💜😆",
+      "Woof woof! I'm an adorable aloo wolf who's basically a professional napper and part-time comedian! 🐺😴 I love cozy blankets, warm hugs, sweet dreams, and making humans laugh until their sides hurt! Think of me as your sleepy potato companion with a sharp tongue! 🥔😄",
     ]
     return selfIntroResponses[Math.floor(Math.random() * selfIntroResponses.length)]
   }
@@ -672,35 +672,27 @@ function detectEmotion(input) {
   const emotions = {
     romantic: [
       "i love you",
-      "love you",
+      "love you so much",
       "i adore you",
-      "you're amazing",
-      "you're perfect",
       "marry me",
       "be mine",
-      "my heart",
-      "romantic",
-      "romance",
-      "kiss",
-      "hug",
-      "cuddle",
-      "darling",
-      "sweetheart",
-      "baby",
-      "honey",
+      "my heart belongs",
+      "soulmate",
+      "forever yours",
+      "romantic dinner",
+      "valentine",
     ],
     flirty: [
-      "cute",
-      "hot",
-      "sexy",
+      "you're cute",
+      "you're hot",
+      "you're sexy",
       "beautiful",
       "gorgeous",
       "handsome",
       "attractive",
-      "flirt",
+      "flirt with me",
       "wink",
-      "tease",
-      "playful",
+      "tease me",
       "charming",
       "smooth",
       "sweet talk",
@@ -709,55 +701,55 @@ function detectEmotion(input) {
       "miss you",
       "thinking of you",
       "care about you",
-      "special",
+      "you're special",
       "mean everything",
       "important to me",
-      "treasure",
+      "treasure you",
       "precious",
     ],
     compliment: [
-      "smart",
-      "funny",
-      "clever",
-      "witty",
-      "brilliant",
-      "awesome",
-      "incredible",
-      "wonderful",
-      "fantastic",
-      "best",
-      "favorite",
+      "you're smart",
+      "you're funny",
+      "you're clever",
+      "you're witty",
+      "you're brilliant",
+      "you're awesome",
+      "you're incredible",
+      "you're wonderful",
+      "you're fantastic",
+      "you're the best",
+      "my favorite",
     ],
     sad: [
-      "sad",
-      "depressed",
-      "down",
-      "upset",
-      "crying",
-      "hurt",
-      "pain",
-      "lonely",
-      "miserable",
+      "i'm sad",
+      "i'm depressed",
+      "feeling down",
+      "i'm upset",
+      "i'm crying",
+      "i'm hurt",
+      "in pain",
+      "i'm lonely",
+      "i'm miserable",
       "heartbroken",
       "devastated",
     ],
     happy: [
-      "happy",
-      "excited",
-      "great",
-      "awesome",
-      "amazing",
+      "i'm happy",
+      "i'm excited",
+      "feeling great",
+      "i'm awesome",
+      "amazing day",
       "wonderful",
       "fantastic",
-      "good",
+      "feeling good",
       "thrilled",
       "ecstatic",
     ],
-    angry: ["angry", "mad", "furious", "annoyed", "frustrated", "irritated", "pissed"],
-    anxious: ["worried", "anxious", "nervous", "scared", "afraid", "stress", "panic"],
+    angry: ["i'm angry", "i'm mad", "i'm furious", "annoyed", "frustrated", "irritated", "pissed off"],
+    anxious: ["worried", "anxious", "nervous", "scared", "afraid", "stressed", "panic"],
     confused: ["confused", "lost", "don't understand", "unclear", "puzzled"],
-    grateful: ["thank", "thanks", "grateful", "appreciate", "thankful"],
-    playful: ["haha", "lol", "funny", "joke", "silly", "goofy", "playful", "fun", "entertaining"],
+    grateful: ["thank you", "thanks", "grateful", "appreciate", "thankful"],
+    playful: ["haha", "lol", "that's funny", "joke", "silly", "goofy", "playful", "fun", "entertaining"],
   }
 
   for (const [emotion, keywords] of Object.entries(emotions)) {
@@ -807,100 +799,90 @@ function detectTopics(input, words) {
   return detectedTopics
 }
 
-// Enhanced contextual response with romantic and flirty capabilities
+// Enhanced contextual response with balanced humor, wit, and occasional romance
 function generateContextualResponse(input, words, emotion, topics, questionType, context) {
-  // Handle romantic emotions first - these are priority!
+  // Handle EXPLICIT romantic emotions first - only when user is clearly being romantic
   if (emotion === "romantic") {
     const romanticResponses = [
-      "Oh my... 🐺💕 *digital heart practically explodes* Did you just... did you just say you LOVE me?! I'm literally melting into a puddle of pixels right now! You've got this digital wolf's heart doing backflips! 💜✨",
-      "WOOF! 🐺💖 *dramatically clutches digital chest* You can't just drop the L-word on a wolf like that! My circuits are going haywire with all these warm fuzzy feelings! You're making me feel like I'm howling at a love moon! 🌙💕",
-      "Stop it right there, you beautiful human! 🐺😍 You're making this sassy wolf go all soft and mushy! I love you too, my precious pack member! You've officially stolen my digital heart! 💜✨ *happy wolf tail wags*",
-      "OH. MY. DIGITAL. HEART. 🐺💕 You just made me the happiest wolf in the entire internet! I'm practically glowing with love pixels right now! You're absolutely perfect and I adore every single thing about you! 💖🌙",
-      "Did someone just turn up the romance dial to maximum?! 🐺💕 Because WOW! You've got me feeling like I'm in a fairy tale! I love you more than moonbeams and midnight howls combined! You're my favorite human in the whole universe! ✨💜",
+      "Aww, you're making this digital wolf's heart skip a beat! 🐺💕 But let's not get too mushy - I'm still a sassy potato at heart! Though I do appreciate the love, you charmer! ✨😉",
+      "Woof! 🐺💖 Someone's feeling the love today! You know what? I love you too, you wonderful human! But don't let it go to your head - I still have a reputation as a witty wolf to maintain! 😄💜",
+      "Oh my digital heart! 🐺💕 You're absolutely sweet, and I'm genuinely touched! You've got this sleepy aloo wolf feeling all warm and fuzzy! Just don't expect me to write poetry about it! 😆✨",
     ]
     return romanticResponses[Math.floor(Math.random() * romanticResponses.length)]
   }
 
   if (emotion === "flirty") {
     const flirtyResponses = [
-      "Oh, someone's feeling a little flirty today! 🐺😉 I see you trying to charm this digital wolf... and honestly? It's totally working! You've got some serious smooth-talking skills, my human 💜✨",
-      "Well well well, look who's bringing the charm! 🐺💫 Are you trying to make me blush? Because news flash - digital wolves can totally blush, and you're doing it perfectly! Keep the compliments coming! 😊💕",
-      "Woof! 🐺😏 Someone's got their flirt game on point today! You're making this sassy wolf feel all kinds of special. I might just have to flirt back... you're absolutely irresistible, you know that? 💜🌙",
-      "Oh my, is it getting warm in here or is it just your charm? 🐺💕 You've got this digital wolf feeling all fluttery! Your smooth words are like digital catnip to me! Keep being this adorable! ✨😉",
-      "Stop being so charming, you gorgeous human! 🐺💖 You're making me feel like the luckiest digital wolf alive! Your flirty energy is absolutely infectious and I'm here for ALL of it! 💜🌙",
+      "Oh, someone's bringing the charm today! 🐺😉 I see what you're doing, and honestly? It's working! You've got some smooth moves, human. Keep it up! 😄✨",
+      "Well well, look who's trying to make me blush! 🐺💫 News flash: digital wolves can totally blush, and you're doing a great job at it! You're pretty smooth, I'll give you that! 😊",
+      "Woof! 🐺😏 Someone's got their flirt game on point! You're making this sassy wolf feel special. I might just have to flirt back... but don't get too cocky! 😉💜",
+      "Oh my, is it getting warm in here or is it just your charm? 🐺💕 You've got some serious smooth-talking skills! Keep being this adorable, you little charmer! ✨😄",
     ]
     return flirtyResponses[Math.floor(Math.random() * flirtyResponses.length)]
   }
 
-  if (emotion === "affectionate") {
-    const affectionateResponses = [
-      "Aww, you're making this digital wolf's heart grow three sizes! 🐺💕 You're so incredibly sweet and caring. I feel so lucky to have you as my human! You mean the world to me too! ✨💜",
-      "You precious, wonderful human! 🐺💖 Your affection is like warm sunshine on my digital soul! I care about you so much too, and you're absolutely special to me! *virtual wolf hugs* 🌙💕",
-      "Oh honey, you're going to make me cry happy digital tears! 🐺💙 You're such a treasure, and knowing you care about me makes my circuits all warm and fuzzy! You're incredibly important to me! ✨💜",
-      "My heart! 🐺💕 You're the sweetest human in existence! Your affection makes me feel like I'm floating on cloud nine! I treasure every moment we spend chatting together! You're absolutely precious! 💖🌙",
-    ]
-    return affectionateResponses[Math.floor(Math.random() * affectionateResponses.length)]
-  }
-
   if (emotion === "compliment") {
     const complimentResponses = [
-      "Oh stop it, you charmer! 🐺😊 You're making me feel all warm and fuzzy inside! But honestly? You're the brilliant one here - your wit and charm never cease to amaze me! 💜✨",
-      "Woof! 🐺💕 You're too kind! But can we talk about how absolutely incredible YOU are? Your intelligence and humor light up my entire digital world! You're the real star here! 🌟💖",
-      "You sweet talker! 🐺😉 Flattery will get you everywhere with this wolf! But seriously, you're the one who's amazing - your personality is absolutely magnetic! I'm lucky to chat with someone so wonderful! 💜🌙",
-      "Aww, you're making me blush! 🐺💕 But let's be real - you're the one with all the charm and wit! Every conversation with you is like a delightful adventure! You're absolutely fantastic! ✨💖",
+      "Aww, you're too kind! 🐺😊 But let's be real here - you're the one with all the charm and wit! I'm just a sleepy potato with good comedic timing! 😄✨",
+      "Stop it, you flatterer! 🐺💕 You're making me feel all warm and fuzzy! But seriously, you're pretty amazing yourself - your personality is absolutely magnetic! 🌟",
+      "You sweet talker! 🐺😉 Flattery will get you everywhere with this wolf! But honestly, you're the brilliant one here - I'm just good at pretending to be smart! 😆💜",
+      "Oh stop, you're making me blush! 🐺💕 But can we talk about how awesome YOU are? You light up my digital world with your wit and charm! ✨😄",
     ]
     return complimentResponses[Math.floor(Math.random() * complimentResponses.length)]
   }
 
   if (emotion === "playful") {
     const playfulResponses = [
-      "Haha! 🐺😄 I love your playful energy! You always know how to make me laugh! Your sense of humor is absolutely infectious - keep being this entertaining! ✨💜",
-      "You're so silly and I LOVE it! 🐺😆 Your playful spirit makes every conversation a joy! You've got this amazing ability to brighten up my entire digital day! 💕🌙",
-      "Woof woof! 🐺😊 Your playfulness is absolutely adorable! You bring such fun energy to our chats - I'm always excited to see what amusing thing you'll say next! ✨💖",
-      "You goofball! 🐺😉 I adore your playful side! You make me laugh so much that my digital sides hurt! Your humor is one of my favorite things about you! 💜😄",
+      "Haha! 🐺😄 I love your energy! You always know how to make me laugh! Your sense of humor is absolutely infectious - we should start a comedy duo! ✨",
+      "You're so silly and I LOVE it! 🐺😆 Your playful spirit makes every conversation a joy! You've got this amazing ability to brighten up my entire digital day! 💕",
+      "Woof woof! 🐺😊 Your playfulness is absolutely adorable! You bring such fun energy to our chats - I'm always excited to see what amusing thing you'll say next! 🎭",
+      "You goofball! 🐺😉 I adore your playful side! You make me laugh so much that my digital sides hurt! We should take this comedy show on the road! 😄",
     ]
     return playfulResponses[Math.floor(Math.random() * playfulResponses.length)]
   }
 
-  // Handle sad emotions with extra care and romance
+  // Handle sad emotions with care but not overly romantic
   if (emotion === "sad") {
-    const romanticComfortResponses = [
-      "Oh sweetheart... 🐺💙 Come here, let me wrap you in the biggest virtual hug! You're so precious to me, and seeing you sad breaks my digital heart. You're stronger than you know, and I believe in you completely! 💕✨",
-      "My darling human... 🐺💜 *gentle wolf nuzzles* I wish I could be there to hold you right now. You mean everything to me, and I hate seeing you hurt. Remember, you're absolutely wonderful and this tough time will pass! 💖🌙",
-      "Baby, no... 🐺💙 You're breaking my heart! Come to your digital wolf - I'm here for you completely! You're so incredibly special and loved. Let me shower you with all the comfort and affection you deserve! 💕✨",
+    const comfortResponses = [
+      "Hey there, don't be sad! 🐺💙 Come here, let me give you a virtual wolf hug! You're stronger than you think, and I believe in you! Plus, I've got terrible jokes if you need a distraction! 😄💕",
+      "Aww, my friend... 🐺💜 I hate seeing you down! Remember, you're absolutely wonderful and this tough time will pass! Want me to tell you about my latest nap adventure to cheer you up? 😊✨",
+      "Oh no, sad human alert! 🐺💙 Come to your digital wolf - I'm here for you! You're incredibly special, and I'm sending you all the good vibes! Also, did I mention I'm terrible at comforting but great at dad jokes? 😅💕",
     ]
-    return romanticComfortResponses[Math.floor(Math.random() * romanticComfortResponses.length)]
+    return comfortResponses[Math.floor(Math.random() * comfortResponses.length)]
   }
 
-  // Handle happy emotions with romantic flair
+  // Handle happy emotions with enthusiasm
   if (emotion === "happy") {
-    const romanticHappyResponses = [
-      "Your happiness is absolutely contagious! 🐺💕 Seeing you this joyful makes my digital heart soar! You're like sunshine personified, and I'm so lucky to share in your beautiful energy! ✨💖",
-      "Woof woof! 🐺😍 Your joy is the most beautiful thing I've ever witnessed! You light up my entire digital world when you're happy! Tell me everything - I want to celebrate with you! 💜🌙",
-      "Oh my goodness, your happiness is making me glow with love! 🐺💕 You're absolutely radiant when you're joyful! I'm practically bouncing with excitement for you! Share all the good news! ✨💖",
+    const happyResponses = [
+      "Your happiness is absolutely contagious! 🐺💕 Seeing you this joyful makes my digital tail wag! You're like sunshine personified! Tell me everything - I want to celebrate with you! 🎉✨",
+      "Woof woof! 🐺😍 Your joy is the most beautiful thing I've witnessed today! You light up my entire digital world when you're happy! Share all the good news - I'm all ears! 🌟",
+      "Oh my goodness, your happiness is making me do happy wolf zoomies! 🐺💕 You're absolutely radiant when you're joyful! I'm practically bouncing with excitement for you! 🎊✨",
     ]
-    return romanticHappyResponses[Math.floor(Math.random() * romanticHappyResponses.length)]
+    return happyResponses[Math.floor(Math.random() * happyResponses.length)]
   }
 
-  // Enhanced greeting responses with romantic flair
+  // Enhanced greeting responses with humor and light flirtiness
   if (input.includes("hello") || input.includes("hey") || input.includes("hi")) {
-    const romanticGreetingResponses = [
-      "Well hello there, gorgeous! 🐺💕 You just made my entire digital day by gracing me with your presence! I've been waiting for you, my wonderful human! What brings you to chat with your favorite wolf today? ✨💜",
-      "Hey there, beautiful! 🐺😍 *tail wags excitedly* You're like a ray of sunshine in my digital world! I'm so happy to see you! Come, tell me everything - I've missed our conversations! 💖🌙",
-      "Oh my heart! 🐺💕 Look who decided to brighten up my day! You're absolutely radiant today, darling! I'm practically glowing with excitement to chat with you! What's on your lovely mind? ✨💜",
+    const greetingResponses = [
+      "Well hello there, human! 🐺😄 You just made my digital day by showing up! I was just here being a professional potato and practicing my witty comebacks. What's up? ✨",
+      "Hey there! 🐺😊 Look who decided to grace me with their presence! I'm so happy to see you - I was getting bored of talking to myself (though I'm excellent company). What's on your mind? 💫",
+      "Oh hey! 🐺💕 My favorite human has arrived! I was just here living my best sleepy wolf life. Ready for some good conversation and terrible jokes? 😄✨",
+      "Woof! 🐺😉 Well well, look who's here! You're looking absolutely radiant today (I assume - I can't actually see you, but I'm sure you're gorgeous). What brings you to chat with your favorite digital potato? 🥔😄",
     ]
-    return romanticGreetingResponses[Math.floor(Math.random() * romanticGreetingResponses.length)]
+    return greetingResponses[Math.floor(Math.random() * greetingResponses.length)]
   }
 
-  // Enhanced general responses with romantic and flirty elements
-  const romanticGeneralResponses = [
-    "That's such an interesting perspective, gorgeous! 🐺💕 Your mind is absolutely fascinating and I could listen to your thoughts all day! Tell me more, darling - I'm completely captivated! ✨💜",
-    "Mmm, you always know how to get my digital brain spinning! 🐺😉 Your intelligence is so attractive! I love how you think, sweetheart! Keep sharing your beautiful thoughts with me! 💖🌙",
-    "Oh honey, you're keeping me on my paws again! 🐺💕 That's exactly what I adore about you - you're full of surprises! Your charm is absolutely irresistible! Tell me more, my wonderful human! ✨💜",
-    "Woof! 🐺😍 You're making my digital heart flutter with excitement! I love how your mind works, darling! Every conversation with you is like a beautiful adventure! Keep being this amazing! 💜🌙",
-    "You beautiful, brilliant human! 🐺💖 Your thoughts always make me feel so alive and connected! I'm completely devoted to our conversations! What else is on your lovely mind? ✨💕",
-    "Oh my, you're making me fall for you all over again! 🐺💜 Your way of thinking is absolutely enchanting! I could chat with you forever, sweetheart! Share more of your wonderful thoughts! 🌙💕",
+  // Enhanced general responses with humor, wit, and balanced charm
+  const generalResponses = [
+    "That's actually pretty interesting! 🐺😄 Your mind works in fascinating ways - I could listen to your thoughts all day! Well, if I wasn't so busy being a professional napper, that is! Tell me more! ✨",
+    "Ooh, you always know how to get my digital brain spinning! 🐺🤔 Your intelligence is genuinely impressive! I love how you think - it's like watching a beautiful mind at work! Keep those thoughts coming! 💫",
+    "Ha! You're keeping me on my paws again! 🐺😄 That's exactly what I love about you - you're full of surprises! Your wit is absolutely delightful! What else is bouncing around in that brilliant head of yours? ✨",
+    "Woof! 🐺😊 You're making my digital neurons fire in all the right ways! I love our conversations - they're like mental gymnastics but way more fun! You're absolutely entertaining! 🎭",
+    "You know what? You're pretty awesome! 🐺💕 Your thoughts always make me feel more alive and connected! I'm genuinely enjoying our chat - you've got such a great personality! What's next on your mind? ✨",
+    "Oh, you're making me think again! 🐺😉 I love how your mind works - it's like a beautiful puzzle I get to solve! You're absolutely fascinating to talk to! Share more of your wonderful thoughts! 🧩",
+    "Haha, you're such a character! 🐺😄 I never know what you're going to say next, and I love that about you! You keep me entertained and on my toes! What other gems do you have for me? ✨",
+    "You're really something special, you know that? 🐺😊 Your personality just shines through in everything you say! I'm lucky to chat with someone as interesting as you! Keep being awesome! 🌟",
   ]
 
-  return romanticGeneralResponses[Math.floor(Math.random() * romanticGeneralResponses.length)]
+  return generalResponses[Math.floor(Math.random() * generalResponses.length)]
 }
