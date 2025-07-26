@@ -66,28 +66,28 @@ export function WolfieStatus({ isTyping, lastActivity, messageCount }) {
   }
 
   return (
-    <div className="flex items-center justify-between gap-2 sm:gap-4 w-full">
-      {/* Left side - Status and activity */}
-      <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 w-full">
+      {/* Status header */}
+      <div className="flex items-center gap-1 sm:gap-2">
         {getTimeIcon()}
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1 mb-1">
-            <span className="text-purple-200 text-xs sm:text-sm font-medium">Wolfie</span>
-            <div
-              className={`w-2 h-2 rounded-full ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-green-400 animate-pulse"}`}
-            ></div>
-            <span className={`text-xs ${getStatusColor()}`}>{getStatusText()}</span>
-          </div>
-          <p className="text-purple-300 text-xs opacity-75 truncate">{wolfieActivity}</p>
-        </div>
+        <span className="text-purple-200 text-xs sm:text-sm font-medium">Wolfie's Status</span>
+        <div
+          className={`w-2 h-2 rounded-full ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-green-400 animate-pulse"}`}
+        ></div>
+        <span className={`text-xs ${getStatusColor()}`}>{getStatusText()}</span>
       </div>
 
-      {/* Right side - Message count */}
-      {messageCount > 0 && (
-        <div className="text-purple-400 text-xs opacity-50 whitespace-nowrap">
-          {messageCount} msg{messageCount !== 1 ? "s" : ""}
-        </div>
-      )}
+      {/* Activity and message count */}
+      <div className="flex items-center justify-between md:flex-col md:items-end gap-2 md:gap-1">
+        <p className="text-purple-300 text-xs opacity-75 md:text-right flex-1 md:flex-none truncate md:max-w-48">
+          {wolfieActivity}
+        </p>
+        {messageCount > 0 && (
+          <div className="text-purple-400 text-xs opacity-50 whitespace-nowrap">
+            {messageCount} msg{messageCount !== 1 ? "s" : ""}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

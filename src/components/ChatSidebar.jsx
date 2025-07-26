@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Trash2, Plus, Trash2Icon } from "lucide-react";
+import { MessageCircle, Trash2, Plus } from "lucide-react";
 import { Button } from "./ui/Button.jsx";
 
 export function ChatSidebar({
@@ -115,7 +115,8 @@ export function ChatSidebar({
               chatSessions.map((session) => (
                 <div
                   key={session.id}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     onSessionSelect(session.id);
                     setIsOpen(false);
                   }}
@@ -137,17 +138,18 @@ export function ChatSidebar({
                         {formatTimestamp(session.timestamp)}
                       </p>
                     </div>
-                    <div className="flex items-center">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDeleteSession(session.id);
-                        }}
-                        className="h-8 w-8 p-1 text-purple-300 text-center items-center mx-auto hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-all duration-200"
-                      >
-                        <Trash2 className="w-4 h-4 text-center" />
-                      </button>
-                    </div>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onDeleteSession(session.id);
+                      }}
+                      size="sm"
+                      variant="ghost"
+                      className="border border-red-500 z-50 bg-white"
+                    >
+                      <Trash2 className="w-4 h-4 text-white" />
+                    </Button>
                   </div>
                 </div>
               ))

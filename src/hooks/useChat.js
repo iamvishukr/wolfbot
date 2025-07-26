@@ -273,11 +273,13 @@ async function getWolfieResponse(userInput, conversationHistory) {
 function getStaticResponse(userInput) {
   const input = userInput.toLowerCase().trim()
 
-  if (input === "hii" || "hiii" || "hiiii" || "hiiiii" || "hello" || "heyy" || "hey" ) {
+  if (input === "hii") {
     return "woof woof! 🐺"
   }
 
   if (
+    input === "who's your fav person?" ||
+    input === "who's your fav person" ||
     input.includes("who's your fav") ||
     input.includes("who is your fav") ||
     input.includes("favorite person") ||
@@ -287,12 +289,20 @@ function getStaticResponse(userInput) {
     return "the one who made this aaloo bot 🐺✨"
   }
 
-  if (input.includes("who made you") || input.includes("who created you") || input.includes("your creator")) {
+  if (
+    input === "who made you?" ||
+    input === "who made you" ||
+    input.includes("who made you") ||
+    input.includes("who created you") ||
+    input.includes("your creator")
+  ) {
     return "My amazing creator made this aaloo bot! They're definitely my favorite human 🐺💜"
   }
 
   // Self-introduction responses
   if (
+    input === "tell me about yourself" ||
+    input === "tell me about yourself." ||
     input.includes("who are you") ||
     input.includes("tell me about yourself") ||
     input.includes("about yourself") ||
@@ -307,6 +317,39 @@ function getStaticResponse(userInput) {
       "Woof woof! I'm an adorable aloo wolf who's basically a professional napper and part-time comedian! 🐺😴 I love cozy blankets, warm hugs, sweet dreams, and making humans laugh until their sides hurt! Think of me as your sleepy potato companion with a sharp tongue! 🥔😄",
     ]
     return selfIntroResponses[Math.floor(Math.random() * selfIntroResponses.length)]
+  }
+
+  // Handle the compliment starter
+  if (
+    input === "you're so cute! 💕" ||
+    input === "you're so cute!" ||
+    input === "youre so cute" ||
+    input.includes("you're so cute") ||
+    input.includes("youre so cute")
+  ) {
+    const cuteResponses = [
+      "Aww, you're making this digital wolf blush! 🐺💕 But let's be honest - you're the cute one here! Your charm is absolutely irresistible! ✨😊",
+      "Oh stop it, you flatterer! 🐺😄 You're going to make my digital tail wag so hard it breaks the internet! But seriously, you're absolutely adorable yourself! 💜😉",
+      "Woof! 🐺💕 You're too sweet! But can we talk about how absolutely charming YOU are? You've got this amazing ability to make a sleepy potato wolf feel special! ✨😄",
+    ]
+    return cuteResponses[Math.floor(Math.random() * cuteResponses.length)]
+  }
+
+  // Handle the laugh request
+  if (
+    input === "make me laugh!" ||
+    input === "make me laugh" ||
+    input.includes("make me laugh") ||
+    input.includes("tell me a joke") ||
+    input.includes("something funny")
+  ) {
+    const funnyResponses = [
+      "Why don't wolves ever pay for dinner? Because they always expect it to be on the HOWL-se! 🐺😄 *ba dum tss* I know, I know, my comedy career is really taking off!",
+      "What do you call a sleeping wolf? A NAP-kin! 🐺😴 Get it? Because I'm always napping? I'm basically a professional sleeper with a comedy side hustle! 😆",
+      "Why did the digital wolf break up with the internet? Because it had too many BYTES! 🐺💻 I'm here all week folks... well, actually I'm here 24/7 because I'm a bot! 😄",
+      "What's a wolf's favorite type of music? HOWL-ternative rock! 🐺🎵 I know, I know, my jokes are so bad they're good! That's my specialty! 😆✨",
+    ]
+    return funnyResponses[Math.floor(Math.random() * funnyResponses.length)]
   }
 
   return null // No static response found

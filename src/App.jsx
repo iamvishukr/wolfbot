@@ -103,22 +103,22 @@ function App() {
   const moods = {
     romantic: {
       emoji: "💕",
-      name: "Romantic Wolfie",
+      name: "Pretty Wolfie",
       color: "from-pink-400 to-rose-400",
     },
     flirty: {
       emoji: "😉",
-      name: "Flirty Wolfie",
+      name: "Cute Wolfie",
       color: "from-purple-400 to-pink-400",
     },
     playful: {
-      emoji: "😄",
-      name: "Playful Wolfie",
+      emoji: "🥔",
+      name: "Aaloo Wolfie",
       color: "from-blue-400 to-purple-400",
     },
     loving: {
       emoji: "🥰",
-      name: "Loving Wolfie",
+      name: "Sanya Wolfie",
       color: "from-rose-400 to-pink-400",
     },
   }
@@ -171,7 +171,8 @@ function App() {
         onNewChat={createNewSession}
         onDeleteSession={deleteSession}
       />
-      <div className="fixed bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 bg-black/40 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-purple-300/20 z-30">
+      {/* Status bar - responsive positioning */}
+      <div className="fixed bottom-2 left-2 right-2 md:bottom-4 md:right-4 md:left-auto md:w-80 bg-black/40 backdrop-blur-md rounded-xl p-2 sm:p-3 border border-purple-300/20 z-30">
         <WolfieStatus isTyping={isLoading} lastActivity={lastActivity} messageCount={messages.length} />
       </div>
 
@@ -207,8 +208,8 @@ function App() {
         ))}
       </div>
 
-      {/* Main chat container */}
-      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-2 sm:p-4 pb-16 sm:pb-4">
+      {/* Main chat container - adjust padding for status bar */}
+      <div className="relative z-10 flex flex-col h-screen max-w-4xl mx-auto p-2 sm:p-4 pb-20 md:pb-4">
         {/* Header */}
         <div className="text-center mb-4 sm:mb-6 pt-2 sm:pt-4">
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
@@ -219,7 +220,7 @@ function App() {
             <div className="text-2xl sm:text-3xl animate-bounce">{moods[currentMood].emoji}</div>
           </div>
           <p className="text-pink-200 text-xs sm:text-sm opacity-75 px-2">
-            {moods[currentMood].name} • Your romantic, flirty digital soulmate 💕
+            {moods[currentMood].name} • Your Personal AlooBot from Space 💞🥔
           </p>
         </div>
 
@@ -230,7 +231,7 @@ function App() {
               <div className="text-6xl mb-4 animate-bounce">🐺💕</div>
               <p className="text-pink-200 text-lg mb-2">Hey there, gorgeous! 💜</p>
               <p className="text-pink-300 text-sm opacity-75 mb-6">
-                I'm Wolfie, your romantic and flirty digital soulmate! I'm here to shower you with love, make you laugh,
+                I'm Wolfie, personal bot and probably your digital soulmate! I'm here to shower you with love, make you laugh,
                 and be your perfect companion. Ready for some sweet conversation? 🌙✨
               </p>
 
