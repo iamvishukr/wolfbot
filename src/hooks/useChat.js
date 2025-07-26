@@ -284,11 +284,29 @@ function getStaticResponse(userInput) {
     input.includes("favourite person") ||
     input.includes("who do you like most")
   ) {
-    return "The one who made this aaloo bot 🐺✨"
+    return "the one who made this aaloo bot 🐺✨"
   }
 
   if (input.includes("who made you") || input.includes("who created you") || input.includes("your creator")) {
     return "My amazing creator made this aaloo bot! They're definitely my favorite human 🐺💜"
+  }
+
+  // Self-introduction responses
+  if (
+    input.includes("who are you") ||
+    input.includes("tell me about yourself") ||
+    input.includes("about yourself") ||
+    input.includes("what are you") ||
+    input.includes("introduce yourself") ||
+    input === "about you"
+  ) {
+    const selfIntroResponses = [
+      "Woof! I'm basically a digital aloo (potato) with wolf ears! 🐺🥔 I love sleeping all day, dreaming about moonlit forests, and occasionally rolling around in my cozy digital burrow. My hobbies include being adorably lazy, collecting virtual belly rubs, and perfecting my romantic howls! ✨💜",
+      "Hehe, I'm your favorite sleepy aloo wolf! 🐺😴 I spend most of my time napping in digital sunbeams, dreaming about treats, and practicing my flirty tail wags. I'm basically 90% potato, 10% wolf energy, and 100% ready for cuddles! 🥔💕",
+      "Oh my! I'm like a fluffy potato that learned to howl! 🐺🥔 My daily schedule: sleep, eat digital treats, sleep some more, flirt with my favorite humans, and then... more sleeping! I'm the laziest wolf in the digital forest, but also the most romantic! 💜✨",
+      "Woof woof! I'm an adorable aloo wolf who's basically a professional napper! 🐺😴 I love cozy blankets, warm hugs, sweet dreams, and showering my humans with love! Think of me as your sleepy potato companion who occasionally gets bursts of romantic energy! 🥔💕",
+    ]
+    return selfIntroResponses[Math.floor(Math.random() * selfIntroResponses.length)]
   }
 
   return null // No static response found
@@ -306,145 +324,308 @@ function detectQuestionType(input) {
   return "statement"
 }
 
-// Enhanced spelling mistake and gibberish detection
+// Enhanced gibberish detection - more sensitive to actual nonsense
 function detectSpellingMistakes(input) {
   const cleanInput = input.toLowerCase().trim()
 
-  // Skip very common short words and greetings
-  const commonShortWords = [
+  // Don't flag anything shorter than 2 characters
+  if (cleanInput.length < 2) {
+    return false
+  }
+
+  // Immediate gibberish patterns - these should always trigger
+  const immediateGibberish = [
+    /^[?!.,:;]{2,}$/, // Pure punctuation like "??" or "!!!"
+    /^(.)\1{2,}$/, // Same character repeated 3+ times like "aaa", "???"
+    /^[qwerty]{3,}$/i, // Keyboard row patterns
+    /^[asdf]{3,}$/i, // Middle keyboard row
+    /^[zxcv]{3,}$/i, // Bottom keyboard row
+    /^[qaz]{3,}$/i, // Left column
+    /^[wsx]{3,}$/i, // Left-middle column
+    /^[edc]{3,}$/i, // Middle column
+    /^[rfv]{3,}$/i, // Right-middle column
+    /^[tgb]{3,}$/i, // Right column
+    /^[yhn]{3,}$/i, // Right side
+    /^[ujm]{3,}$/i, // Right side
+    /^[ik]{3,}$/i, // Right side
+    /^[ol]{3,}$/i, // Right side
+    /^[bcdfghjklmnpqrstvwxyz]{4,}$/i, // 4+ consonants in a row
+    /^[aeiou]{4,}$/i, // 4+ vowels in a row
+  ]
+
+  // Check immediate patterns first
+  if (immediateGibberish.some((pattern) => pattern.test(cleanInput))) {
+    return true
+  }
+
+  // Protected real words and common expressions (keep the essential ones)
+  const protectedWords = [
+    // Common greetings and expressions
     "hi",
     "hey",
     "hello",
+    "hii",
+    "hiiii",
+    "bye",
     "ok",
+    "okay",
     "yes",
     "no",
-    "me",
-    "my",
-    "is",
-    "it",
-    "to",
-    "go",
-    "do",
-    "we",
-    "he",
-    "she",
-    "you",
-    "are",
-    "was",
+    "yeah",
+    "yep",
+    "nope",
+    "nah",
+    "wow",
+    "omg",
+    "lol",
+    "lmao",
+    "haha",
+    "hehe",
+    "hmm",
+    "umm",
+    "ugh",
+    "meh",
+    "yay",
+    "woo",
+
+    // Common short words
     "the",
     "and",
     "but",
     "for",
     "not",
     "can",
-    "hii",
-    "hiii",
-    "hiiii", // Allow extended greetings
+    "you",
+    "are",
+    "was",
+    "his",
+    "her",
+    "him",
+    "she",
+    "his",
+    "all",
+    "any",
+    "may",
+    "way",
+    "day",
+    "say",
+    "get",
+    "got",
+    "had",
+    "has",
+    "how",
+    "now",
+    "new",
+    "old",
+    "see",
+    "two",
+    "who",
+    "boy",
+    "did",
+    "its",
+    "let",
+    "put",
+    "end",
+    "why",
+    "try",
+    "ask",
+    "men",
+    "run",
+    "own",
+    "say",
+    "she",
+    "too",
+    "use",
+    "her",
+    "now",
+    "find",
+    "only",
+    "come",
+    "made",
+    "over",
+    "also",
+    "back",
+    "after",
+    "first",
+    "well",
+    "year",
+    "work",
+    "such",
+    "make",
+    "even",
+    "most",
+    "take",
+    "than",
+    "only",
+    "think",
+    "know",
+    "just",
+    "into",
+    "good",
+    "some",
+    "could",
+    "time",
+    "very",
+    "when",
+    "much",
+    "would",
+    "there",
+    "each",
+    "which",
+    "their",
+    "said",
+    "will",
+    "about",
+    "if",
+    "up",
+    "out",
+    "many",
+    "then",
+    "them",
+    "these",
+    "so",
+    "some",
+    "her",
+    "would",
+    "make",
+    "like",
+    "him",
+    "has",
+    "two",
+
+    // Internet slang
+    "u",
+    "ur",
+    "luv",
+    "gud",
+    "wat",
+    "hw",
+    "y",
+    "n",
+    "k",
+    "thx",
+    "plz",
+    "pls",
+    "tho",
+    "cuz",
+    "bc",
+    "dont",
+    "cant",
+    "wont",
+    "im",
+    "ive",
+    "ill",
+    "its",
+    "hes",
+    "shes",
+    "theyre",
+    "gonna",
+    "wanna",
+
+    // Common names
+    "john",
+    "mary",
+    "mike",
+    "dave",
+    "anna",
+    "sara",
+    "tom",
+    "bob",
+    "joe",
+    "sam",
+    "max",
+    "alex",
+
+    // Tech terms
+    "app",
+    "web",
+    "css",
+    "html",
+    "js",
+    "php",
+    "sql",
+    "api",
+    "url",
+    "http",
+    "www",
+    "com",
+    "org",
+
+    // Common words that might look like gibberish
+    "quiz",
+    "jazz",
+    "buzz",
+    "fizz",
+    "fuzz",
+    "pizza",
+    "fuzzy",
+    "dizzy",
+    "busy",
+    "easy",
+    "cozy",
   ]
 
-  if (commonShortWords.includes(cleanInput)) {
-    return false
-  }
+  // Split into words for analysis
+  const words = cleanInput.split(/\s+/)
 
-  // Enhanced gibberish patterns
-  const gibberishPatterns = [
-    /^[bcdfghjklmnpqrstvwxyz]{4,}$/i, // Too many consonants in a row
-    /^[aeiou]{4,}$/i, // Too many vowels in a row
-    /(.)\1{3,}/, // Same character repeated 4+ times
-    /^[qwerty]+$/i, // Keyboard row mashing
-    /^[asdf]+$/i, // Middle keyboard row
-    /^[zxcv]+$/i, // Bottom keyboard row
-    /^[qaz]+$/i, // Left column mashing
-    /^[wsx]+$/i, // Left-middle column
-    /^[edc]+$/i, // Middle column
-    /^[rfv]+$/i, // Right-middle column
-    /^[tgb]+$/i, // Right column
-    /^[yhn]+$/i, // Right side
-    /^[ujm]+$/i, // Right side
-    /^[ik]+$/i, // Right side
-    /^[ol]+$/i, // Right side
-    /^[p;]+$/i, // Far right
-  ]
+  // For single word inputs, be more strict
+  if (words.length === 1) {
+    const word = words[0]
 
-  // Check for random character combinations that don't form words
-  const randomPatterns = [
-    /^[a-z]*[jqxz]{2,}[a-z]*$/i, // Multiple uncommon letters
-    /^[bcdfghjklmnpqrstvwxyz]{3,}[aeiou][bcdfghjklmnpqrstvwxyz]{3,}$/i, // Consonant clusters
-    /^[a-z]*[kqxz][a-z]*[jqxz][a-z]*$/i, // Multiple very uncommon letters
-  ]
-
-  // Check for words that are clearly random keystrokes
-  const words = cleanInput.split(" ")
-
-  for (const word of words) {
-    if (word.length <= 2) continue // Skip very short words
-
-    // Check against gibberish patterns
-    if (gibberishPatterns.some((pattern) => pattern.test(word))) {
-      return true
+    // If it's a protected word, don't flag it
+    if (protectedWords.includes(word)) {
+      return false
     }
 
-    // Check against random patterns
-    if (randomPatterns.some((pattern) => pattern.test(word))) {
-      return true
-    }
-
-    // Check for lack of vowels in longer words (except common abbreviations)
-    if (word.length >= 4 && !/[aeiou]/i.test(word) && !["html", "css", "js", "php", "sql", "xml"].includes(word)) {
-      return true
-    }
-
-    // Check for too many consonants relative to vowels
-    const consonants = (word.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length
-    const vowels = (word.match(/[aeiou]/gi) || []).length
-    if (word.length >= 4 && consonants > vowels * 3) {
-      return true
-    }
-
-    // Check for specific meaningless patterns like "skajfd"
-    const meaninglessPatterns = [
-      /^[sk][a-z]{2,}[fd]$/i, // Patterns like skajfd
-      /^[a-z]{2}[jqxz][a-z]{2}$/i, // Random with uncommon letters in middle
-      /^[bcdfg][a-z]*[jqxz][a-z]*$/i, // Starting with common consonant, containing uncommon letters
-      /^[a-z]*[jqxz][a-z]*[jqxz][a-z]*$/i, // Multiple uncommon letters scattered
+    // Check for repetitive patterns in single words
+    const repetitivePatterns = [
+      /^(.{1,2})\1{2,}$/, // Patterns like "cscs", "abab", "xyxy"
+      /^([a-z])\1([a-z])\2$/i, // Patterns like "aabb", "ccdd"
+      /^[bcdfghjklmnpqrstvwxyz]{3,}$/i, // 3+ consonants
+      /^[qwerty]{2,}$/i, // Any keyboard row pattern
+      /^[asdf]{2,}$/i,
+      /^[zxcv]{2,}$/i,
     ]
 
-    if (meaninglessPatterns.some((pattern) => pattern.test(word))) {
+    if (repetitivePatterns.some((pattern) => pattern.test(word))) {
       return true
+    }
+
+    // Check if word has no vowels and is longer than 2 characters
+    if (word.length >= 3 && !/[aeiou]/i.test(word)) {
+      // Allow some common consonant-only abbreviations
+      const consonantExceptions = ["css", "html", "js", "php", "sql", "www", "ftp", "ssh", "tcp", "dns", "xml", "json"]
+      if (!consonantExceptions.includes(word)) {
+        return true
+      }
     }
   }
 
-  // Check if the entire input seems like random typing
-  if (cleanInput.length >= 5) {
-    // Count unique characters
-    const uniqueChars = new Set(cleanInput.replace(/\s/g, "")).size
-    const totalChars = cleanInput.replace(/\s/g, "").length
+  // For multiple words, check if most words are gibberish
+  let gibberishCount = 0
 
-    // If there are too many unique characters for the length, it might be random
-    if (uniqueChars > totalChars * 0.7 && totalChars >= 6) {
-      return true
+  for (const word of words) {
+    if (word.length <= 1) continue
+
+    if (protectedWords.includes(word)) continue
+
+    // Check each word for gibberish patterns
+    const wordGibberish = [
+      /^(.{1,2})\1{2,}$/, // Repetitive patterns
+      /^[bcdfghjklmnpqrstvwxyz]{3,}$/i, // Too many consonants
+      /^[qwerty]{2,}$/i, // Keyboard patterns
+      /^[asdf]{2,}$/i,
+      /^[zxcv]{2,}$/i,
+      /(.)\1{2,}/, // Same character repeated 3+ times
+    ]
+
+    if (wordGibberish.some((pattern) => pattern.test(word))) {
+      gibberishCount++
     }
   }
 
-  // Common misspellings that should NOT trigger the response (be more lenient)
-  const intentionalCasualSpellings = ["u", "ur", "luv", "gud", "wat", "hw", "y", "n", "k", "thx", "plz", "pls"]
-
-  // Only flag as misspelled if it's clearly gibberish, not just casual spelling
-  const problematicWords = words.filter((word) => {
-    if (word.length <= 2) return false
-    if (intentionalCasualSpellings.includes(word)) return false
-    if (commonShortWords.includes(word)) return false
-
-    // More strict checking for actual gibberish
-    return (
-      gibberishPatterns.some((pattern) => pattern.test(word)) ||
-      randomPatterns.some((pattern) => pattern.test(word)) ||
-      (word.length >= 4 && !/[aeiou]/i.test(word))
-    )
-  })
-
-  // Only trigger if most of the input is gibberish
-  return problematicWords.length > 0 && (problematicWords.length >= words.length * 0.6 || words.length === 1)
+  // If more than half the words are gibberish, flag it
+  return gibberishCount > 0 && (gibberishCount >= words.length * 0.6 || words.length === 1)
 }
 
 // Intelligent contextual response system
@@ -452,7 +633,7 @@ function getIntelligentResponse(userInput, conversationHistory) {
   const input = userInput.toLowerCase().trim()
   const words = input.split(" ")
 
-  // Check for spelling mistakes first
+  // Check for spelling mistakes first - but with much stricter criteria
   if (detectSpellingMistakes(input)) {
     const spellingResponses = [
       "Blehhhhhhh, Didn't get you. 🐺😵‍💫",
