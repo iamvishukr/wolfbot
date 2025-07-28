@@ -1,6 +1,6 @@
 # WolfBot 🐺
 
-<img width="460" height="812" alt="image" src="https://github.com/user-attachments/assets/4f901068-80ef-4867-a2ba-c01632b7eb61" />
+<img width="1917" height="921" alt="image" src="https://github.com/user-attachments/assets/bbc3bc51-d411-44ff-aa04-8dd05189a750" />
 
 
 WolfBot is a simple, frontend-only chatbot interface built using React, Vite, and Tailwind CSS. There’s no backend, no real AI — just a fun experiment with design, layout, and component structure.
