@@ -1,12 +1,62 @@
-# React + Vite
+# WolfBot 🐺
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WolfBot is a simple, frontend-only chatbot interface built using React, Vite, and Tailwind CSS. There’s no backend, no real AI — just a fun experiment with design, layout, and component structure.
 
-Currently, two official plugins are available:
+This project is a small, light-hearted tribute to a friend of mine, whom I affectionately call **Wolfie**. In this UI, Wolfie is the chatbot — friendly, quirky, and always ready to reply (even if the replies are just placeholders for now). It started as a casual idea and turned into a great way to explore smooth interactions and styling with Tailwind.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+The project is built with:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React for component-based UI
+* Vite for fast builds and instant hot reloading
+* Tailwind CSS for utility-first styling
+* ESLint for basic code linting
+
+## Getting Started
+
+To run the project locally:
+
+1. Clone the repository
+
+   ```
+   git clone https://github.com/yourusername/wolfbot.git
+   cd wolfbot
+   ```
+
+2. Install dependencies
+
+   ```
+   npm install
+   ```
+
+3. Start the development server
+
+   ```
+   npm run dev
+   ```
+
+Then visit `http://localhost:5173` in your browser to see it in action.
+
+## Project Structure
+
+* `src/components` contains all the reusable UI elements
+* `src/assets` holds any images or icons used in the project
+* `App.jsx` defines the main application layout
+* `main.jsx` is the entry point that renders the app
+
+## Notes
+
+This is a purely frontend project — there's no backend or database. It doesn’t connect to any real AI engine, though it could easily be extended to use one in the future. Right now, it’s more of a concept demo: a playful chatbot UI with Wolfie as the central character.
+
+## License
+
+This project is open source under the MIT License.
+
+---
+
+Let me know if you'd like to include:
+
+* A custom message from "Wolfie"
+* Deployment link (if hosted anywhere)
+* A short story or inspiration behind the idea
